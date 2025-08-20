@@ -7,7 +7,7 @@ import os
 import difflib
 import json
 
-def pivot_iontech(df: pd.DataFrame) -> pd.DataFrame:
+def pivot_bl3t_25(df: pd.DataFrame) -> pd.DataFrame:
     df = df.pivot(index='TimeString', columns='VarName', values='VarValue')
     df.rename(columns={"Analog_PC_CIT101.Analog_out": "Salt Conductivity (ms/cm)",
                          "Analog_PC_CIT102.Analog_out": "Acid Conductivity (ms/cm)",
@@ -71,7 +71,7 @@ def _schema_2_pred(df: pd.DataFrame) -> bool:
     return True
 
 def _schema_1_normalize(df: pd.DataFrame) -> pd.DataFrame:
-    df = pivot_iontech(df)
+    df = pivot_bl3t_25(df)
     df.columns.name = None
     df['Timestamp'] = pd.to_datetime(df['Timestamp'])
     return df
